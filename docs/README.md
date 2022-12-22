@@ -19,9 +19,9 @@ Once in the repository directory, it is time to edit the `manifest.json` file of
 Once you are in the file, you must replace the `vendor`, `name`, `version`, `title` and `description` values.
 
  `vendor` is the name of the partner account you are working on.
- name` is the name of what your component is going to be called as dependency
- version` the initial version you will start working with
- title` title of the component which is not subject to how it will be declared as a dependency so it can be any title you like
+ `name` is the name of what your component is going to be called as dependency
+ `version` the initial version you will start working with
+ `title` title of the component which is not subject to how it will be declared as a dependency so it can be any title you like
  `description` small description of what the component is for.
  
 Example:
@@ -31,8 +31,8 @@ Example:
   "vendor": "partner",
   "name": "name-component",
   "version": "0.0.x",
-  "title": "Component title",
-  "description": "Short description of what the component is for",
+  "title": "Titulo del Componente",
+  "description": "Pequeña descripción para lo que sirve el componente",
   ...
 }
 ```
