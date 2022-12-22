@@ -51,7 +51,7 @@ Example:
   },
   ...
 }
-```
+````
 
 After that you have to create a folder named store in the top folder of the component, that `store` folder will have a file named `interfaces.json`.
 
@@ -64,7 +64,7 @@ Example:
     "render": "client" // This property is set if it is to be used only by the client
   }
 }
-```
+````
 
 ### Step 4 - Declare necessary dependencies
 
@@ -79,7 +79,7 @@ Example:
   "vtex.dependencies": "0.x"
 },
 ...
-```
+````
 
 ### Step 5 - Edit package.json
 
