@@ -1,114 +1,126 @@
-📢 Use this project, [contribute](https://github.com/{OrganizationName}/{AppName}) to it or open issues to help evolve it using [Store Discussion](https://github.com/vtex-apps/store-discussion).
 
-# APP NAME
+# Custom Department Search
 
-<!-- DOCS-IGNORE:start -->
-<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-0-orange.svg?style=flat-square)](#contributors-)
-<!-- ALL-CONTRIBUTORS-BADGE:END -->
-<!-- DOCS-IGNORE:end -->
+![custom-department-search](https://github.com/SergioYepes/Itgloberspartnercl-custom-deparment-search/blob/master/docs/componentImage.png)
 
-Under the app's name, you should explain the topic, giving a **brief description** of its **functionality** in a store when installed.
+Selected custom search by departments 
 
-Next, **add media** (either an image of a GIF) with the rendered components, so that users can better understand how the app works in practice. 
+## Configuration
+### Step 1 - Cloning the repository
 
-![Media Placeholder](https://user-images.githubusercontent.com/52087100/71204177-42ca4f80-227e-11ea-89e6-e92e65370c69.png)
+[Clone](https://github.com/vtex-apps/react-app-template) the react-app-template repository to start with the basics of initial configuration, once on the github repository page; there is the option that says `Use this template`, to make a copy to our repository.
 
-## Configuration 
+Then, access the repository directory using your terminal.
 
-In this section, you first must **add the primary instructions** that will allow users to use the app's blocks in their store, such as:
+### Step 2 - Edit the Manifest.json
 
-1. Adding the app as a theme dependency in the `manifest.json` file;
-2. Declaring the app's main block in a given theme template or inside another block from the theme.
+Once in the repository directory, it is time to edit the `manifest.json` file of the react app template.
 
-Remember to add a table with all blocks exported by the app and their descriptions. You can verify an example of it on the [Search Result documentation](https://vtex.io/docs/components/all/vtex.search-result@3.56.1/). 
+Once you are in the file, you must replace the `vendor`, `name`, `version`, `title` and `description` values.
 
-Next, add the **props table** containing your block's props. 
+ `vendor` is the name of the partner account you are working on.
+ name` is the name of what your component is going to be called as dependency
+ version` the initial version you will start working with
+ title` title of the component which is not subject to how it will be declared as a dependency so it can be any title you like
+ `description` small description of what the component is for.
+ 
+Example:
 
-If the app exports more than one block, create several tables - one for each block. For example:
+```json
+{
+  "vendor": "partner",
+  "name": "name-component",
+  "version": "0.0.x",
+  "title": "Component title",
+  "description": "Short description of what the component is for",
+  ...
+}
+```
 
-### `block-1` props
+### Step 3 - Configure the builder store
 
-| Prop name    | Type            | Description    | Default value                                                                                                                               |
-| ------------ | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | 
-| `XXXXX`      | `XXXXXX`       | XXXXXXXX         | `XXXXXX`        |
+For the component to work correctly the builder store must be declared in the `manifest.json`. 
 
+Example:
 
-### `block-2` props
+````json
+{
+  "builders": {
+    ...
+    "store": "0.x"
+  },
+  ...
+}
+```
 
-| Prop name    | Type            | Description    | Default value                                                                                                                               |
-| ------------ | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | 
-| `XXXXX`      | `XXXXXX`       | XXXXXXXX         | `XXXXXX`        |
+After that you have to create a folder named store in the top folder of the component, that `store` folder will have a file named `interfaces.json`.
 
-Prop types are: 
+Example:
 
-- `string` 
-- `enum` 
-- `number` 
-- `boolean` 
-- `object` 
-- `array` 
+````json
+{
+  "name-component": { // The name that is declared in the manifest.json of the vtex app
+    "component": "new-name", // The name of the component to be fed from.
+    "render": "client" // This property is set if it is to be used only by the client
+  }
+}
+```
 
-When documenting a prop whose type is `object` or `array` another prop table will be needed. You can create it following the example below:
+### Step 4 - Declare necessary dependencies
 
-- `propName` object:
+In the `manifest.json` you must declare the dependencies that are going to be used in the desired component. 
 
-| Prop name    | Type            | Description    | Default value                                                                                                                               |
-| ------------ | --------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | 
-| `XXXXX`      | `XXXXXX`       | XXXXXXXX         | `XXXXXX`        |
+Example:
 
+````json
+...
+"dependencies": {
+  "vtex.dependencies": "0.x",
+  "vtex.dependencies": "0.x"
+},
+...
+```
 
-Remember to also use this Configuration section to  **showcase any necessary disclaimer** related to the app and its blocks, such as the different behavior it may display during its configuration. 
+### Step 5 - Edit package.json
 
-## Modus Operandi *(not mandatory)*
+The first `package.json` is the global one, it is next to the `manifest.json`, let's change its `version` and `name`.
+ 
+Example:
 
-There are scenarios in which an app can behave differently in a store, according to how it was added to the catalog, for example. It's crucial to go through these **behavioral changes** in this section, allowing users to fully understand the **practical application** of the app in their store.
+```json
+{
+  "version": "0.0.x",
+  "name": "name-component",
+  ...
+}
+```
 
-If you feel compelled to give further details about the app, such as it's **relationship with the VTEX admin**, don't hesitate to use this section. 
+And repeat the same process with the `package.json` inside the react folder.
 
-## Customization
+### Step 6 - Install react dependencies
 
-The first thing that should be present in this section is the sentence below, showing users the recipe pertaining to CSS customization in apps:
+For this step you must enter to the react folder, and once there you must execute in your console the command
+```json
+partner-name-componet/react> yarn
+```
+to install all the necessary dependencies.
 
-`In order to apply CSS customizations in this and other blocks, follow the instructions given in the recipe on [Using CSS Handles for store customization](https://vtex.io/docs/recipes/style/using-css-handles-for-store-customization).`
+### Step 7 - Create component
 
-Thereafter, you should add a single column table with the available CSS handles for the app, like the one below. Note that the Handles must be ordered alphabetically.
+In the react folder you must create the file you are going to work with, example: `name.tsx`, then create your component folder and start development
 
-| CSS Handles |
-| ----------- | 
-| `XXXXX` | 
-| `XXXXX` | 
-| `XXXXX` | 
-| `XXXXX` | 
-| `XXXXX` |
+### Step 8 - Run a store preview
 
+Then the time has come to upload all the changes you made in your local files to the platform. For that, use the `vtex link` command.
 
-If there are none, add the following sentence instead:
+If the process runs without any errors, the following message will be displayed: `Application linked successfully`. Next, run the `vtex browser` command to open a browser window with your linked store.
 
-`No CSS Handles are available yet for the app customization.`
+This will allow you to see the changes applied in real time, across the account and workspace you are working in.
 
-<!-- DOCS-IGNORE:start -->
+## Dependencies
+1. "vtex.css-handles" 2.
+2. "vtex.store-graphql" 3.
+3. "vtex.store-components"
 
-## Contributors ✨
-
-Thanks goes to these wonderful people:
-
-<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
-<!-- prettier-ignore-start -->
-<!-- markdownlint-disable -->
-<!-- markdownlint-enable -->
-<!-- prettier-ignore-end -->
-<!-- ALL-CONTRIBUTORS-LIST:END -->
-
-This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind are welcome!
-
-<!-- DOCS-IGNORE:end -->
-
----- 
-
-Check out some documentation models that are already live: 
-- [Breadcrumb](https://github.com/vtex-apps/breadcrumb)
-- [Image](https://vtex.io/docs/components/general/vtex.store-components/image)
-- [Condition Layout](https://vtex.io/docs/components/all/vtex.condition-layout@1.1.6/)
-- [Add To Cart Button](https://vtex.io/docs/components/content-blocks/vtex.add-to-cart-button@0.9.0/)
-- [Store Form](https://vtex.io/docs/components/all/vtex.store-form@0.3.4/)
+##Contributors
+1. Sergio Yepes Gualteros
