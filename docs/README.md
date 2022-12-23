@@ -123,5 +123,5 @@ This will allow you to see the changes applied in real time, across the account 
 2. "vtex.store-graphql"
 3. "vtex.store-components"
 
-##Contributors
+## Contributors
 1. Sergio Yepes Gualteros
