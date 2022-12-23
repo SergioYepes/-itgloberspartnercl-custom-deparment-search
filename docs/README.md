@@ -119,9 +119,9 @@ This will allow you to see the changes applied in real time, across the account 
 
 ## Dependencies
 
-1. "vtex.css-handles": "0.x",
-2. "vtex.store-graphql": "2.x",
-3. "vtex.store-components": "3.x"
+1. "vtex.css-handles"
+2. "vtex.store-graphql"
+3. "vtex.store-components"
 
 ##Contributors
 1. Sergio Yepes Gualteros
